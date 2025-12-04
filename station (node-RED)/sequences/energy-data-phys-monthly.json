@@ -1,0 +1,18 @@
+{
+    "sequence":{
+        "name":"energy-data-phys-monthly",
+        "seq":[
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[140,91,140,91],
+                        "duration":[15,15,15,15]
+                        }
+                    },
+                    "delay":15000
+            }
+            ]
+    }
+}

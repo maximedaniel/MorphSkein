@@ -1,0 +1,18 @@
+{
+    "sequence":{
+        "name":"energy-data-phys-biweekly",
+        "seq":[
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[105,140,105,140],
+                        "duration":[15,15,15,15]
+                        }
+                    },
+                    "delay":15000
+            }
+            ]
+    }
+}

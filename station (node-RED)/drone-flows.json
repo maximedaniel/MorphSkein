@@ -1,0 +1,491 @@
+[
+    {
+        "id": "a1afa0c5665ccdc6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "71ead58928f371ad",
+        "type": "websocket in",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "server": "dc3013c2935ef624",
+        "client": "",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "7e1f299a094f7702",
+                "d65c21c2f94bbeae"
+            ]
+        ]
+    },
+    {
+        "id": "7e1f299a094f7702",
+        "type": "json",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "2d6c11fe8471b361"
+            ]
+        ]
+    },
+    {
+        "id": "2d6c11fe8471b361",
+        "type": "function",
+        "z": "a1afa0c5665ccdc6",
+        "name": "FetchSpin",
+        "func": "var msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\n\nmsg1.payload = msg.payload.payload.current_spin;\nmsg2.payload = msg.payload.payload.target_spin;\nmsg3.payload = msg.payload.payload.status_spin;\n\n\nmsg1.topic = 'Current Spin (RPM)';\nmsg2.topic = 'Target Spin (RPM)';\nmsg3.topic = 'Status Spin';\nreturn [[msg1, msg2, msg3]]; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 180,
+        "wires": [
+            [
+                "0aaf6df6fe50d5b2"
+            ]
+        ]
+    },
+    {
+        "id": "0aaf6df6fe50d5b2",
+        "type": "ui_chart",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "group": "45c89e41926dd96a",
+        "order": 1,
+        "width": 12,
+        "height": 7,
+        "label": "Spin Chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "500",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f0f71d0d33bbb68",
+        "type": "websocket out",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "server": "",
+        "client": "cc70baf6fa7a12c7",
+        "x": 710,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "145ffc93f64d7d23",
+        "type": "function",
+        "z": "a1afa0c5665ccdc6",
+        "name": "STATE JSON",
+        "func": "var new_payload = { topic: 'state', payload: {} }\nmsg.payload = JSON.stringify(new_payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 620,
+        "wires": [
+            [
+                "1f0f71d0d33bbb68"
+            ]
+        ]
+    },
+    {
+        "id": "12ae5612b13a768f",
+        "type": "inject",
+        "z": "a1afa0c5665ccdc6",
+        "name": "State Interval",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 560,
+        "y": 740,
+        "wires": [
+            [
+                "145ffc93f64d7d23"
+            ]
+        ]
+    },
+    {
+        "id": "de5d166a72f22841",
+        "type": "debug",
+        "z": "a1afa0c5665ccdc6",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "cd19569a851257ac",
+        "type": "function",
+        "z": "a1afa0c5665ccdc6",
+        "name": "SPIN JSON",
+        "func": "var spin_value = flow.get('spinValue') || 0;\nvar new_payload = { topic: 'spin', payload: { spin: spin_value}}\nmsg.payload = JSON.stringify(new_payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "de5d166a72f22841",
+                "1f0f71d0d33bbb68"
+            ]
+        ]
+    },
+    {
+        "id": "acc59d4442716050",
+        "type": "change",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "spinValue",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05c4fc15aed11191",
+        "type": "ui_text_input",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "label": "Spin Numeric",
+        "tooltip": "",
+        "group": "45c89e41926dd96a",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "acc59d4442716050"
+            ]
+        ]
+    },
+    {
+        "id": "c947ab8ff70d0b69",
+        "type": "ui_button",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "group": "45c89e41926dd96a",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Spin Button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "cd19569a851257ac"
+            ]
+        ]
+    },
+    {
+        "id": "b15781da26cfe1c5",
+        "type": "function",
+        "z": "a1afa0c5665ccdc6",
+        "name": "SPINCMD JSON",
+        "func": "var spin_cmd_value = flow.get('spinCmdValue') || 0;\nvar new_payload = { topic: 'spinCmd', payload: { spinCmd: spin_cmd_value}}\nmsg.payload = JSON.stringify(new_payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 660,
+        "wires": [
+            [
+                "1f0f71d0d33bbb68"
+            ]
+        ]
+    },
+    {
+        "id": "34ef781b9dd1b805",
+        "type": "change",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "spinCmdValue",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70c4f6f0df87f8b4",
+        "type": "ui_text_input",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "label": "SpinCmd Numeric",
+        "tooltip": "",
+        "group": "45c89e41926dd96a",
+        "order": 5,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "34ef781b9dd1b805"
+            ]
+        ]
+    },
+    {
+        "id": "a41c2338feabc7c9",
+        "type": "ui_button",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "group": "45c89e41926dd96a",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "SpinCmd Button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "b15781da26cfe1c5"
+            ]
+        ]
+    },
+    {
+        "id": "6c96222153bc82ff",
+        "type": "ui_chart",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "group": "45c89e41926dd96a",
+        "order": 2,
+        "width": 12,
+        "height": 7,
+        "label": "SpinCmd Chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "500",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1020,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "518619f604b5f7aa",
+        "type": "function",
+        "z": "a1afa0c5665ccdc6",
+        "name": "FetchSpinCmd",
+        "func": "var msg1 = {};\nvar msg2 = {};\nmsg1.payload = msg.payload.payload.current_spin_cmd;\nmsg2.payload = msg.payload.payload.target_spin_cmd;\n\n\nmsg1.topic = 'Current Spin Cmd';\nmsg2.topic = 'Target Spin Cmd';\nreturn [[msg1, msg2]]; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 240,
+        "wires": [
+            [
+                "6c96222153bc82ff"
+            ]
+        ]
+    },
+    {
+        "id": "d65c21c2f94bbeae",
+        "type": "json",
+        "z": "a1afa0c5665ccdc6",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "518619f604b5f7aa"
+            ]
+        ]
+    },
+    {
+        "id": "dc3013c2935ef624",
+        "type": "websocket-listener",
+        "path": "ws://192.168.137.171/ws",
+        "wholemsg": "false"
+    },
+    {
+        "id": "45c89e41926dd96a",
+        "type": "ui_group",
+        "name": "DronePovDisplay",
+        "tab": "d9755a252565d9ce",
+        "order": 2,
+        "disp": true,
+        "width": 24,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cc70baf6fa7a12c7",
+        "type": "websocket-client",
+        "path": "ws://192.168.137.171/ws",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "d9755a252565d9ce",
+        "type": "ui_tab",
+        "name": "Drone",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

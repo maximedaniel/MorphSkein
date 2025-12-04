@@ -1,0 +1,71 @@
+{
+    "sequence":{
+        "name":"intro",
+        "seq":[
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,266,0,266],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":6000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[266,266,266,266],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 266, 
+                        "duration": 3
+                        }
+                    },
+                    "delay":12000
+            }, 
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 0, 
+                        "duration": 3
+                        }
+                    },
+                    "delay":18000
+            }, 
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,266,0,266],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,0,0,0],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":12000
+            }
+            ]
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "sequence":{
+        "name":"audio-spectrum-analyzer",
+        "seq":[
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[210,0,210,0],
+                        "duration":[5,5,5,5]
+                        }
+                    },
+                    "delay":6000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,210,0,210],
+                        "duration":[5,5,5,5]
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,0,0,0],
+                        "duration":[5,5,5,5]
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[210,210,210,210],
+                        "duration":[5,5,5,5]
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 180, 
+                        "duration": 5
+                        }
+                    },
+                    "delay":12000
+            }, 
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 0, 
+                        "duration": 5
+                        }
+                    },
+                    "delay":12000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[0,0,0,0],
+                        "duration":[5,5,5,5]
+                        }
+                    },
+                    "delay":12000
+            }
+            ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "sequence":{
+        "name":"intro",
+        "seq":[
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[266,266,266,266],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":6000
+            },
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 280, 
+                        "duration": 6
+                        }
+                    },
+                    "delay":3000
+            }
+            ]
+    }
+}

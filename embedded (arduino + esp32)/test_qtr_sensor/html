@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">.highlight {color: #BB86FC} #setrpm{height:50px; width: 100px; font-size:30pt;} #button{height:50px; font-size:30pt;} </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body style="background-color:#121212; color:#FFFFFF">
+    <h1 style="font-size:40px"><center>POV Drone Display Controller</center></h1>
+    <p1 style="font-size:30px"><center>Motor State: <span class="highlight"> OFF </span></center></p1>
+    <p1 style="font-size:30px"><center>Spin Speed: <span class="highlight">413 </span>rpm</center></p1>
+    <p1 style="font-size:30px"><center>Altitude: <span class="highlight">0</span> m</center></p1><br><br>
+    <form action="/action_page.php" style="font-size:50px"><center>
+        <input type="number" id="setrpm" name="setrpm" value="400"><br>
+        <input type="submit" id="button" value="Set RPM">
+    </center></form>
+    <p><center><a href=\"/26/on\"><button class=\"button\" id="button">Enable Motor</button></a></center></p>
+    <p><center><a href=\"/26/on\"><button class=\"button\" id="button">Disable Motor</button></a></center></p>
+</body>
+</html>

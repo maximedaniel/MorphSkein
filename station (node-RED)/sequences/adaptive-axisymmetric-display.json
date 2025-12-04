@@ -1,0 +1,38 @@
+{
+    "sequence":{
+        "name":"adaptive-axisymmetric-display",
+        "seq":[
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 0, 
+                        "duration": 6
+                        }
+                    },
+                    "delay":45000
+            },
+            {
+                "data":{
+                    "topic": "height", 
+                    "payload": { 
+                        "height": 280, 
+                        "duration": 6
+                        }
+                    },
+                    "delay":24000
+            },
+            {
+                "data":{
+                    "topic":"lines",
+                    "payload":{
+                        "index":[0,1,2,3],
+                        "position":[210,0,210,0],
+                        "duration":[6,6,6,6]
+                        }
+                    },
+                    "delay":21000
+            }
+            ]
+    }
+}
